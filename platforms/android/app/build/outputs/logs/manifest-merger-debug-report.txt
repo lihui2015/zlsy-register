@@ -28,7 +28,7 @@ INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/Androi
 INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
 INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
 	package
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:4:11-33
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:4:11-32
 		INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml
 	android:versionName
@@ -131,8 +131,8 @@ MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/apple/.gradle/caches/t
 	tools:replace
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:23:9-44
 	android:name
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:16:9-50
-activity#com.weex.app.SplashActivity
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:16:9-38
+activity#cn.edu.zstu.SplashActivity
 ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:24:9-34:20
 	android:screenOrientation
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:28:13-49
@@ -141,7 +141,7 @@ ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidMa
 	android:configChanges
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:26:13-74
 	android:name
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:25:13-55
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:25:13-43
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:29:13-33:29
 action#android.intent.action.MAIN
@@ -152,18 +152,18 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:32:17-76
 	android:name
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:32:27-74
-activity#com.weex.app.WXPageActivity
+activity#cn.edu.zstu.WXPageActivity
 ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:35:9-39:20
 	android:screenOrientation
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:38:13-49
 	android:label
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:37:13-45
 	android:name
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:36:13-55
-activity#com.weex.app.pdfreader.PDFReaderActivity
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:36:13-43
+activity#cn.edu.zstu.pdfreader.PDFReaderActivity
 ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:41:9-44:20
 	android:name
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:42:13-68
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:42:13-56
 activity#com.journeyapps.barcodescanner.CaptureActivity
 ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:45:9-48:48
 MERGED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.4.0.aar/2897fb8f1cb9d555106c90c09f6dbfe7/AndroidManifest.xml:46:9-52:63

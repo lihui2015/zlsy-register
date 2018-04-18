@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.weex.app"
+    package="cn.edu.zstu"
     android:versionCode="1"
     android:versionName="1.0.0" >
 
@@ -30,7 +30,7 @@
         android:required="false" />
 
     <application
-        android:name="com.weex.app.WXApplication"
+        android:name="cn.edu.zstu.WXApplication"
         android:allowBackup="false"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
@@ -38,7 +38,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.weex.app.SplashActivity"
+            android:name="cn.edu.zstu.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -49,11 +49,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.weex.app.WXPageActivity"
+            android:name="cn.edu.zstu.WXPageActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.weex.app.pdfreader.PDFReaderActivity" >
+        <activity android:name="cn.edu.zstu.pdfreader.PDFReaderActivity" >
         </activity>
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"

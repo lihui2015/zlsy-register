@@ -6,7 +6,7 @@ android {
     buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.weex.app"
+        applicationId "cn.edu.zstu"
         minSdkVersion 21
         targetSdkVersion project.targetSdkVersion
         versionCode 1

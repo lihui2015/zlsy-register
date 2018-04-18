@@ -1,5 +1,5 @@
 <template>
-    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'',isand?'android-wrapper':'']">
+    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'',isand?'android-wrapper':'',isHuaWei?'huawei-wrapper':'']">
 
         <div class="bar-item" @click="tabTo('home')">
             <text class="bar-ic iconfont icon-home bar-active" v-if="this.isActive('home')">&#xe702;</text>
@@ -42,7 +42,10 @@
     }
     
     .android-wrapper{
-        bottom: 45px;
+        /*bottom: 45px;*/
+    }
+    .huawei-wrapper{
+        bottom: 0px;
     }
     .w-ipx{
         height: 150px;
@@ -110,11 +113,21 @@
         data () {
             return {
                 pIndexKey:this.router,
-                isand:false
+                isand:false,
+                isHuaWei:false
             }
         },
         created(){
             this.isand = Utils.env.isAndroid();
+            var _self = this;
+            weex.requireModule('close').getPhoneAppBar(function(map){
+              modal.toast({
+                message:map.bar,
+                duration:3
+              })
+              _self.isHuaWei = map.bar;
+
+            });
         },
         methods: {
             isActive:function (_c) {

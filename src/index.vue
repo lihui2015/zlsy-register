@@ -46,6 +46,8 @@
           //     });
           //   }
           // }); 
+
+
       },
       methods: {
           // onTabTo(_result){
@@ -67,6 +69,8 @@
             }else{
               this.$router.back();
             }
+
+              
             
           }
       }
@@ -82,12 +86,10 @@
       right: 0;
       bottom: 0;
       width: 750px;
-        height: 1334px;
 }
   .app-wrapper{
         background-color: #ffffff;
         width: 750px;
-        height: 1334px;
         position: absolute;
       top:0;
       left: 0;
@@ -101,7 +103,6 @@
       right: 0;
       bottom: 0;
       width: 750px;
-        height: 1334px;
   }
   .r-box{
       position: absolute;

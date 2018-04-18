@@ -552,6 +552,10 @@
         "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/4af990d6382be2e1d88098b8d2f0e055/res/drawable-hdpi-v4/design_ic_visibility.png"
     },
     {
+        "merged": "/Users/apple/www/weex/zlsy-1/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/apple/www/weex/zlsy-1/platforms/android/app/build/intermediates/res/merged/debug/drawable_abc_textfield_search_material.xml.flat",
         "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/cc304b66e6f024f82edefd049f01eea0/res/drawable/abc_textfield_search_material.xml"
     },
