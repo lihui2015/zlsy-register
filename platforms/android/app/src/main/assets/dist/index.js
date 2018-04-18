@@ -1261,7 +1261,7 @@ module.exports = new _vueRouter2.default({
     component: _mypost2.default,
     meta: { requiresAuth: true }
   }, {
-    path: '/about/:current/:new',
+    path: '/about',
     name: 'about',
     component: _about2.default
   }, {
@@ -7299,16 +7299,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(i.book_name))]), _c('text', {
       staticClass: ["bk-count"]
     }, [_vm._v(_vm._s(i.read_count) + "人在阅读")])])
-  }))]), _c('div', {
-    staticClass: ["cell-button"]
-  }, [_c('text', {
-    staticClass: ["open-text"],
-    on: {
-      "click": function($event) {
-        _vm.jump('/openDoor')
-      }
-    }
-  }, [_vm._v("鸟巢开柜")])])]), _c('tab-bar', {
+  }))])]), _c('tab-bar', {
     attrs: {
       "router": "home"
     },
@@ -12786,7 +12777,7 @@ exports.default = {
             _this.getBookList();
             //this.getActivityList()
             _this.getPostList();
-            _this.getVersion();
+            //this.getVersion()
         });
     },
 
@@ -12974,7 +12965,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: ["aboutBox"],
     on: {
       "click": function($event) {
-        _vm.jump('/about/' + _vm.currentVersion + '/' + _vm.newVersion)
+        _vm.jump('/about')
       }
     }
   }, [_c('text', {
@@ -20825,7 +20816,8 @@ module.exports = {
     "backgroundColor": "#ffffff"
   },
   "qrcode": {
-    "alignItems": "center"
+    "alignItems": "center",
+    "paddingBottom": "40"
   },
   "qr-img": {
     "width": "480",
@@ -20931,8 +20923,8 @@ exports.default = {
     },
     created: function created() {
         this.isand = _utils2.default.env.isAndroid();
-        this.currentVersion = this.$route.params.current;
-        this.newVersion = this.$route.params.new;
+        // this.currentVersion = this.$route.params.current;
+        // this.newVersion = this.$route.params.new;
     },
 
     methods: {
@@ -20960,23 +20952,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "showScrollbar": "false"
     }
-  }, [_c('div', {
-    staticClass: ["text-box"]
-  }, [_c('text', {
-    staticClass: ["name", "text"]
-  }, [_vm._v("书香浙理APP")]), _c('div', {
-    staticClass: ["version"]
-  }, [_c('text', {
-    staticClass: ["version-text"]
-  }, [_vm._v("当前版本")]), _c('text', {
-    staticClass: ["version-code"]
-  }, [_vm._v(_vm._s(_vm.currentVersion))])]), _c('div', {
-    staticClass: ["version"]
-  }, [_c('text', {
-    staticClass: ["version-text"]
-  }, [_vm._v("最新版本")]), _c('text', {
-    staticClass: ["version-code"]
-  }, [_vm._v(_vm._s(_vm.newVersion))])])]), _c('div', {
+  }, [_vm._m(0), _c('div', {
     staticClass: ["qrcode-box"]
   }, [_c('div', {
     staticClass: ["android", "qrcode"]
@@ -20985,15 +20961,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "src": _vm.androidImg
     }
-  }), _c('text', {
-    staticClass: ["qr-text"],
-    on: {
-      "click": function($event) {
-        _vm.jumpWeb()
-      }
-    }
-  }, [_vm._v("更新下载")])])]), _vm._m(0)])], 1)
+  })])]), _vm._m(1)])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: ["text-box"]
+  }, [_c('text', {
+    staticClass: ["name", "text"]
+  }, [_vm._v("书香浙理APP")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: ["copy-right"]
   }, [_c('text', {

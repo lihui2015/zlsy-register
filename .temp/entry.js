@@ -50,6 +50,7 @@ var mixins = {
                         headers:headerObj,
                         url: 'http://zl.senseitgroup.com/app/' + api
                     }, (response) => {
+                        console.log(response.status == 200);
                         if (response.status == 200) {
                             resolve(response.data)
                         }else {

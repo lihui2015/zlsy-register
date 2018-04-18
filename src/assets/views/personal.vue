@@ -9,7 +9,7 @@
                 <text class="i-tag tag-v8 iconfont">&#xe660;</text>
                 <text class="txt-tag"></text>
             </div> -->
-            <div class="aboutBox" @click="jump('/about/'+currentVersion+'/'+newVersion)">
+            <div class="aboutBox" @click="jump('/about')">
                 <text class="about-icon iconfont">&#xe62d;</text>
                 <text class="about-text">关于</text>
                 <text class="notice-dot" v-if="isNew"></text>
@@ -106,7 +106,7 @@
                 this.getBookList()
                 //this.getActivityList()
                 this.getPostList()
-                this.getVersion()
+                //this.getVersion()
             })
         },
         methods: {

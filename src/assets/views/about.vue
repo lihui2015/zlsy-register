@@ -4,21 +4,21 @@
         <scroller ref="contentScroller" :class="['scroller',isIpx&&isIpx()?'ml-ipx':'',isand?'android-main-list':'']"  show-scrollbar="false">
             <div class="text-box">
                 <text class="name text">书香浙理APP</text>
-                <div class="version">
+                <!-- <div class="version">
                     <text class="version-text">当前版本</text>
                     <text class="version-code">{{currentVersion}}</text>
                 </div>
                 <div class="version">
                     <text class="version-text">最新版本</text>
                     <text class="version-code">{{newVersion}}</text>
-                </div>
+                </div> -->
                 
             </div>
             
             <div class="qrcode-box">
                 <div class="android qrcode">
                     <image class="qr-img" :src="androidImg"></image>
-                    <text class="qr-text" @click="jumpWeb()">更新下载</text>
+                    <!-- <text class="qr-text" @click="jumpWeb()">更新下载</text> -->
                 </div>
             </div>
 
@@ -51,8 +51,8 @@
         },
         created(){
             this.isand = Utils.env.isAndroid();
-            this.currentVersion = this.$route.params.current;
-            this.newVersion = this.$route.params.new;
+            // this.currentVersion = this.$route.params.current;
+            // this.newVersion = this.$route.params.new;
         },
         methods: {
             jumpWeb(){
@@ -126,6 +126,7 @@
     }   
     .qrcode{
         align-items: center;
+        padding-bottom: 40px;
     }
     .qr-img{
         width: 480px;

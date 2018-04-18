@@ -6,7 +6,7 @@
     density="xxhdpi"
     format="10"
     plugin-version="3.0.1"
-    timestamp="1524043755305"
+    timestamp="1524045017161"
     token="-5848828401558042757"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -70,7 +70,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1524043755305"
+        timestamp="1524045017161"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/apple/www/weex/zlsy-1/platforms/android/app/build/outputs/apk/debug/Users/apple/www/weex/zlsy-1/platforms/android/app/build/intermediates/instant-run-resources/weex-app.apk"

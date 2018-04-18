@@ -34,21 +34,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/dist/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="21373" column="12" lean-forward="false" selection-start-line="21373" selection-start-column="12" selection-end-line="21373" selection-end-column="12" />
+              <caret line="21348" column="12" lean-forward="false" selection-start-line="21348" selection-start-column="12" selection-end-line="21348" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="356">
-              <caret line="21373" column="12" lean-forward="false" selection-start-line="21373" selection-start-column="12" selection-end-line="21373" selection-end-column="12" />
+              <caret line="21348" column="12" lean-forward="false" selection-start-line="21348" selection-start-column="12" selection-end-line="21348" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -2814,8 +2814,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/cn/edu/zstu/extend/CloseModule.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/cn/edu/zstu/util/APKVersionCodeUtils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/assets/dist/index.js" />
         <option value="$PROJECT_DIR$/app/src/main/assets/index.js" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/dist/index.js" />
       </list>
     </option>
   </component>
@@ -3451,7 +3451,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1524044315996" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1524045238423" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3499,7 +3499,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1524044315997" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1524045238424" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3682,7 +3682,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1524044316021" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1524045238431" />
       </method>
     </configuration>
     <list size="1">
@@ -3734,7 +3734,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="90" y="27" width="1340" height="837" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -4234,18 +4233,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/dist/index.js">
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="21373" column="12" lean-forward="false" selection-start-line="21373" selection-start-column="12" selection-end-line="21373" selection-end-column="12" />
+        <state relative-caret-position="356">
+          <caret line="21348" column="12" lean-forward="false" selection-start-line="21348" selection-start-column="12" selection-end-line="21348" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/index.js">
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/dist/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="21373" column="12" lean-forward="false" selection-start-line="21373" selection-start-column="12" selection-end-line="21373" selection-end-column="12" />
+        <state relative-caret-position="330">
+          <caret line="21348" column="12" lean-forward="false" selection-start-line="21348" selection-start-column="12" selection-end-line="21348" selection-end-column="12" />
           <folding />
         </state>
       </provider>

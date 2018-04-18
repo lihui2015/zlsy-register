@@ -123,7 +123,7 @@ module.exports = new Router({
       meta: { requiresAuth: true }
     },
     {
-      path: '/about/:current/:new',
+      path: '/about',
       name: 'about',
       component: about
     },

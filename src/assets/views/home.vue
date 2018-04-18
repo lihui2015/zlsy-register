@@ -25,9 +25,9 @@
                     </div>
                 </div>
             </div>
-            <div class="cell-button">
+            <!-- <div class="cell-button">
                 <text class="open-text" @click="jump('/openDoor')">鸟巢开柜</text>
-            </div>
+            </div> -->
             <!-- <loading :class="['loading',loadinging ? 'show' : 'hide']" @loading="onloading">
               <loading-indicator class="indicator"></loading-indicator>
             </loading>  -->
