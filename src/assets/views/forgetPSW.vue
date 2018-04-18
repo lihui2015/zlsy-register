@@ -190,6 +190,26 @@
                     })
                     return false;
                 }
+
+                // var data = JSON.stringify({"phone":ph,"code":cd,"password":pw,'password_confirmation':cpw});
+                
+                // this.POST('forgetPassword', '', data, data => {
+                //     if(res.data.code == 200){
+                //         //注册成功
+                //         let result = res.data.result;
+                //         modal.toast({
+                //             message: res.data.message+"，请登陆",
+                //             duration: 1
+                //         })
+                //         _self.$router.push('/login');
+                //     }else{
+                //         modal.toast({
+                //             message: res.data.message,
+                //             duration: 3
+                //         })
+                //     }
+                // })
+
                 stream.fetch({
                     method: 'POST',
                     type: 'json',
@@ -226,27 +246,40 @@
                     return false;
                 }
                 
-                stream.fetch({
-                    method: 'POST',
-                    type: 'json',
-                    url: 'http://zl.senseitgroup.com/app/sendCode?phone='+ph
-                }, function(res){
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.POST('sendCode?phone='+ph, '', '', data => {
+                  if(data.code == 200){
+                        let result = data.result;
                         _self.before = false;
                         _self.TIME=new Date().getTime() + 60000
-                        modal.toast({
-                            message: res.data.message,
-                            duration: 3
-                        })
                     }else{
                         modal.toast({
-                            message: res.data.message,
-                            duration: 3
+                            message: data.message,
+                            duration: 1
                         })
                     }
-                    
                 })
+
+                // stream.fetch({
+                //     method: 'POST',
+                //     type: 'json',
+                //     url: 'http://zl.senseitgroup.com/app/sendCode?phone='+ph
+                // }, function(res){
+                //     if(res.data.code == 200){
+                //         let result = res.data.result;
+                //         _self.before = false;
+                //         _self.TIME=new Date().getTime() + 60000
+                //         modal.toast({
+                //             message: res.data.message,
+                //             duration: 3
+                //         })
+                //     }else{
+                //         modal.toast({
+                //             message: res.data.message,
+                //             duration: 3
+                //         })
+                //     }
+                    
+                // })
             },
             onCompleted(){
                 this.before=true;

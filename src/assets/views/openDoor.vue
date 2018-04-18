@@ -109,26 +109,61 @@
                     "OptTime": 10000,
                     "CheckStr": "demo"
                 };
-                stream.fetch({
-                    method: 'POST',
-                    type: 'json',
-                    headers:{
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data),
-                    url: 'http://hardware.senseitgroup.com/OpenDoorDemo/' 
-                }, res => {
-                    //console.log(res.data);
-                    var msg = res.data.msg;
+
+                new Promise((resolve, reject) => {
+                    stream.fetch({
+                        method: 'POST',
+                        type: 'json',
+                        headers:{
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data),
+                        url: 'http://hardware.senseitgroup.com/OpenDoorDemo/' 
+                    }, (res) => {
+                        if (res.status == 200) {
+                            resolve(res.data)
+                        }else {
+                            reject(res)
+                        }
+                      
+                    }, () => {})
+
+                }).then(function(data) {
+                    var msg = data.msg;
                     if(msg == '开门成功'){
-                        var num = res.data.params.DoorID;
+                        var num = data.params.DoorID;
                         modal.toast({
                             message: num + '号柜门已打开，请取走您的书籍',
                             duration: 1
                         })
                     }
-
+                }).catch(function(){
+                    modal.toast({
+                        message: '请求数据出错，检查网络后请重试',
+                        duration: 1
+                    })
                 })
+
+                // stream.fetch({
+                //     method: 'POST',
+                //     type: 'json',
+                //     headers:{
+                //         "Content-Type": "application/json"
+                //     },
+                //     body: JSON.stringify(data),
+                //     url: 'http://hardware.senseitgroup.com/OpenDoorDemo/' 
+                // }, res => {
+                //     //console.log(res.data);
+                //     var msg = res.data.msg;
+                //     if(msg == '开门成功'){
+                //         var num = res.data.params.DoorID;
+                //         modal.toast({
+                //             message: num + '号柜门已打开，请取走您的书籍',
+                //             duration: 1
+                //         })
+                //     }
+
+                // })
             }
         }
     }

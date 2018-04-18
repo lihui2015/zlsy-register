@@ -1,7 +1,7 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2 :title="name" :leftBtn='leftButton'></header2>
-        <scroller class="main" :class="[isand?'android-main':'']" offset-accuracy="300px" loadmoreoffset="300">
+        <scroller class="main" :class="[isand?'android-main':'']" offset-accuracy="300px" @loadmore="onloading" loadmoreoffset="200">
             <refresher></refresher>
             <div class="section-box">
               <div class="box-wrap bt40">
@@ -16,7 +16,7 @@
                       </div>
                     </div>
                     <text class="i-author">作者：{{detail.author}}</text>
-                    <text class="i-count">{{detail.read_count}}人阅读</text>
+                    <text class="i-count">{{read_counts}}人阅读</text>
                     <div class="shareBox" @click="collect(collectTag)">
                       <text ref='collect' :class="['i-collect','iconfont', 'collected']" v-if="collectTag == 1">&#xe64b;</text>
                       <text ref='collect' :class="['i-collect','iconfont']" v-else>&#xe64c;</text>
@@ -84,10 +84,10 @@
               </div>
               </div>
             </div>
-            <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
-              <!-- <text class="indicator-text">{{placeholder}}</text> -->
-              <!-- <loading-indicator class="indicator"></loading-indicator> -->
-            </loading> 
+            <!-- <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
+              <text class="indicator-text">{{placeholder}}</text>
+              <loading-indicator class="indicator"></loading-indicator>
+            </loading>  -->
             <!--<loading class="loading" display="hide">-->
                 <!--<text class="indicator">Loading ...</text>-->
             <!--</loading>-->
@@ -117,7 +117,7 @@
         width: 750px;
     } 
     .android-main{
-      margin-bottom: 150px;
+      /*margin-bottom: 150px;*/
     }
     .book-detail{
       flex-direction: row;
@@ -489,7 +489,8 @@
                 workerSrc: 'https://cdn.bootcss.com/pdf.js/1.9.456/pdf.worker.min.js',
                 starbar: 'http://www.imbawin.com/images/iconpic-star-S-default.png',
                 star: 'http://www.imbawin.com/images/iconpic-star-S.png',
-                isand:false
+                isand:false,
+                read_counts: ''
             }
         },
         created () {
@@ -500,15 +501,16 @@
             storage.getItem('token',event => {
               this.token = event.data;
               // this.token = '8755a2c81a83b12e45691e87b2ac8540';
-              this.GET('books/detail/'+this.bookID, this.token, res => {
-                if(res.data.code == 200){
-                    let result = res.data.result;
+              this.GET('books/detail/'+this.bookID, this.token, data => {
+                if(data.code == 200){
+                    let result = data.result;
                     this.detail = result;
                     this.collectTag = result.is_collect;
                     this.activities = result.activity;
+                    this.read_counts = result.read_count;
                 }else{
                     modal.toast({
-                        message: res.data.code + ":" + _self.token,
+                        message: data.code,
                         duration: 3
                     })
                 }
@@ -527,16 +529,16 @@
             }
             var _self = this;
             var data = '';
-            this.POST('books/collect/'+this.bookID, this.token, data, res => {
-              if (res.data.code == 200){
+            this.POST('books/collect/'+this.bookID, this.token, data, data => {
+              if (data.code == 200){
                 _self.collectTag = 1;
                 modal.toast({
-                    message: res.data.message,
+                    message: data.message,
                     duration: 1
                 })
               }else{
                 modal.toast({
-                    message: res.data.message,
+                    message: data.message,
                     duration: 3
                 })
               }
@@ -548,10 +550,10 @@
           getComment(){
             var _self = this;
 
-            this.GET('books/comment/'+this.bookID+'?page='+this.current_page, this.token, res => {
+            this.GET('books/comment/'+this.bookID+'?page='+this.current_page, this.token, data => {
                 this.loadinging = false;
-                if(res.data.code == 200){
-                    let result = res.data.result;
+                if(data.code == 200){
+                    let result = data.result;
                     if(result.data.length == 0){
                       _self.placeholder = "暂无评论"
                     }
@@ -569,7 +571,7 @@
                     
                 }else{
                     modal.toast({
-                        message: res.data.code + ":" + _self.token,
+                        message: data.code,
                         duration: 3
                     })
                 }
@@ -590,9 +592,11 @@
                   this.$router && this.$router.push('/'+_key)
               },
           readBook(){
+            var _self = this;
             //增加阅读次数
-            this.POST('books/count/'+this.bookID, this.token, '', res => {
-              if(res.data.code == 200){
+            this.POST('books/count/'+this.bookID, this.token, '', data => {
+              if(data.code == 200){
+                _self.read_counts = _self.read_counts + 1;
               }else{
               }  
             });

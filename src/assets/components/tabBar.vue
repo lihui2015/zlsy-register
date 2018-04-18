@@ -11,13 +11,13 @@
             <text class="bar-ic iconfont icon-activity bar-active" v-if="this.pIndexKey == 'activity'">&#xe6df;</text>
             <text class="bar-ic iconfont icon-activity" v-else>&#xe6de;</text>
             <text class="bar-txt" :class="[this.pIndexKey == 'activity'?'bar-active':'']">活动</text>
-            <text class="notice-dot"></text>
+            <!-- <text class="notice-dot"></text> -->
         </div>
         <div class="bar-item" @click="tabTo('personal')">
             <text class="bar-ic iconfont icon-person bar-active" v-if="this.pIndexKey == 'personal'">&#xe715;</text>
             <text class="bar-ic iconfont icon-person" v-else>&#xe716;</text>
             <text class="bar-txt" :class="[this.isActive('personal')]">我的</text>
-            <text class="i-notice">2</text>
+            <!-- <text class="i-notice">2</text> -->
         </div>
     </div>
 </template>
@@ -121,10 +121,7 @@
             this.isand = Utils.env.isAndroid();
             var _self = this;
             weex.requireModule('close').getPhoneAppBar(function(map){
-              modal.toast({
-                message:map.bar,
-                duration:3
-              })
+                
               _self.isHuaWei = map.bar;
 
             });

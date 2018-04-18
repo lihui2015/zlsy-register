@@ -1,7 +1,7 @@
 <template>
   <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2 :title="postDetail.title" :leftBtn='leftBtn'></header2>
-        <scroller class="main" :class="[isand?'android-main':'']" offset-accuracy="300px" loadmoreoffset="300">
+        <scroller class="main" :class="[isand?'android-main':'']" offset-accuracy="300px" @loadmore="onloading" loadmoreoffset="200">
             <refresher></refresher>
         <div class="contentBox">
           <div class="auther-box">
@@ -43,10 +43,10 @@
             </div>
           </div>
         </div>
-        <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
-          <!-- <text class="indicator-text">{{placeholder}}</text> -->
-          <!-- <loading-indicator class="indicator"></loading-indicator> -->
-        </loading> 
+        <!-- <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
+          <text class="indicator-text">{{placeholder}}</text>
+          <loading-indicator class="indicator"></loading-indicator>
+        </loading>  -->
       </scroller>
       <div class="comment-form" :class="[isand?'android-comment-form':'']">
         <!-- <text class="more iconfont">&#xe744;</text> -->
@@ -94,9 +94,9 @@ export default {
         storage.getItem('token',event => {
           this.token = event.data;
           //获取帖子详情
-          this.GET('posts/detail/'+this.postID, this.token, res => {
-            if(res.data.code == 200){
-              let result = res.data.result;
+          this.GET('posts/detail/'+this.postID, this.token, data => {
+            if(data.code == 200){
+              let result = data.result;
               this.postDetail = result;
               this.readersImg = result.readers.full_avatar;
               this.readersName = result.readers.name;
@@ -104,14 +104,14 @@ export default {
               this.ups = result.ups;
             }else{
               modal.toast({
-                message: res.data.code + ":" + this.token,
+                message: data.code,
                 duration: 3
               })
             }  
           });
           //增加阅读次数
-          this.POST('posts/view/'+this.postID, this.token, '', res => {
-            if(res.data.code == 200){
+          this.POST('posts/view/'+this.postID, this.token, '', data => {
+            if(data.code == 200){
             }else{
             }  
           });
@@ -123,10 +123,10 @@ export default {
     methods:{
       getComment(){
         var _self = this;
-        this.GET('posts/comments/'+this.postID+'?page='+this.current_page, this.token, res => {
+        this.GET('posts/comments/'+this.postID+'?page='+this.current_page, this.token, data => {
             this.loadinging = false;
-            if(res.data.code == 200){
-                let result = res.data.result;
+            if(data.code == 200){
+                let result = data.result;
                 if(result.data.length == 0){
                   //_self.placeholder = "暂无评论"
                 }
@@ -144,7 +144,7 @@ export default {
                 
             }else{
                 modal.toast({
-                    message: res.data.code + ":" + _self.token,
+                    message: data.code,
                     duration: 3
                 })
             }
@@ -172,8 +172,8 @@ export default {
             return false;
         }
         var data = JSON.stringify({"content":_self.commentContent});
-        _self.POST('posts/comment/'+_self.postID, _self.token, data, res => {
-          if (res.data.code == 200){
+        _self.POST('posts/comment/'+_self.postID, _self.token, data, data => {
+          if (data.code == 200){
             modal.toast({
                 message: "评论发表成功，请等待审核",
                 duration: 3
@@ -181,7 +181,7 @@ export default {
             _self.$router.push('/_empty');
           }else{
             modal.toast({
-                message: res.data.message,
+                message: data.message,
                 duration: 3
             })
           }
@@ -208,7 +208,7 @@ export default {
       width: 750px;
     }
     .android-main{
-      margin-bottom: 150px;
+      /*margin-bottom: 150px;*/
     }
     .comment-form{
       position: fixed;
@@ -223,7 +223,7 @@ export default {
       align-items: center;
     }
     .android-comment-form{
-      bottom:45px;
+      /*bottom:45px;*/
     }
     .more{
       font-size: 50px;

@@ -1,7 +1,7 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2  title="我的帖子" :leftBtn='leftBtn'></header2>
-        <scroller class="main-list" offset-accuracy="300px" :class="[isand?'android-main-list':'']">
+        <scroller class="main-list" :class="[isand?'android-main-list':'']" offset-accuracy="300px" @loadmore="onloading" loadmoreoffset="200">
             <refresher></refresher>
             <div class="box-cont box-post">
                 <div class="box-cont-item box-post-item" v-for="post in posts" @click="jump('/themeDetail/'+post.id)">
@@ -9,9 +9,9 @@
                     <text class="box-post-time">{{post.created_at}}</text>
                 </div>
             </div>
-            <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
-               <!-- <loading-indicator class="indicator"></loading-indicator> -->
-             </loading>
+            <!-- <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
+               <loading-indicator class="indicator"></loading-indicator>
+             </loading> -->
         </scroller>
         <tab-bar router='list'></tab-bar>
     </div>
@@ -35,7 +35,7 @@
         /*margin-bottom: 290px;*/
     }
     .android-main-list{
-        margin-bottom: 150px;
+        /*margin-bottom: 150px;*/
     }
     .box-post{
         padding-left: 20px;
@@ -112,10 +112,10 @@
         methods: {
             getCommenList(){
                 var _self = this;
-                this.GET('profile/post/'+_self.postList+'?page='+this.current_page, this.token, res => {
+                this.GET('profile/post/'+_self.postList+'?page='+this.current_page, this.token, data => {
                     this.loadinging = false;
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                    if(data.code == 200){
+                        let result = data.result;
                         for(let i = 0; i<result.length; i++){
                           this.posts.push(result[i])
                           _self.posts[i].created_at = result[i].created_at.split(' ')[0];
@@ -131,7 +131,7 @@
                         
                     }else{
                         modal.toast({
-                            message: res.data.code + ":" + _self.token,
+                            message: data.code,
                             duration: 3
                         })
                     }

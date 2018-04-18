@@ -1954,7 +1954,7 @@
     </declare-styleable><declare-styleable name="ButtonBarContainerTheme">
         <attr format="reference" name="metaButtonBarStyle"/>
         <attr format="reference" name="metaButtonBarButtonStyle"/>
-    </declare-styleable></file><file path="/Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/res/values/colors.xml" qualifiers=""><color name="colorPrimary">#009FF0</color><color name="colorPrimaryDark">#009FF0</color><color name="colorAccent">#F3A94F</color></file><file path="/Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/res/values/strings.xml" qualifiers=""><string name="app_name">PDFReader</string></file><file path="/Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/res/values/styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </declare-styleable></file><file path="/Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/res/values/colors.xml" qualifiers=""><color name="colorPrimary">#009FF0</color><color name="colorPrimaryDark">#009FF0</color><color name="colorAccent">#F3A94F</color></file><file path="/Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/res/values/strings.xml" qualifiers=""><string name="app_name">书香浙理</string></file><file path="/Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/res/values/styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

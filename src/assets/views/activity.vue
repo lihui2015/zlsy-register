@@ -1,14 +1,14 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2  title="活动"></header2>
-        <scroller class="main-list" :class="[isand?'android-main-list':'']" offset-accuracy="300px">
+        <scroller class="main-list" :class="[isand?'android-main-list':'']" offset-accuracy="300px" @loadmore="onloading" loadmoreoffset="200">
             <!-- <refresher></refresher> -->
             <div v-for="ar in articles" class="cell-button">
                 <block-3 :article="ar" url=""></block-3>
             </div>
-            <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
-               <!-- <loading-indicator class="indicator"></loading-indicator> -->
-             </loading>
+            <!-- <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
+               <loading-indicator class="indicator"></loading-indicator>
+             </loading> -->
         </scroller>
         <tab-bar @tabTo="onTabTo" router='activity'></tab-bar>
     </div>
@@ -32,7 +32,7 @@
         background-color: #f4f4f4;
     }
     .android-main-list{
-        margin-bottom: 150px;
+        /*margin-bottom: 150px;*/
     }
     .cell-button{
         background-color: #f4f4f4;
@@ -84,10 +84,10 @@
         methods: {
             getList(){
                 var _self = this;
-                this.GET('activities/list?page='+this.current_page, this.token, res => {
+                this.GET('activities/list?page='+this.current_page, this.token, data => {
                     this.loadinging = false;
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                    if(data.code == 200){
+                        let result = data.result;
                         for(let i = 0; i<result.data.length; i++){
                           this.articles.push(result.data[i])
                         }
@@ -102,7 +102,7 @@
                         
                     }else{
                         modal.toast({
-                            message: res.data.code + ":" + _self.token,
+                            message: data.code,
                             duration: 3
                         })
                     }

@@ -2,7 +2,10 @@
     <slider class="slider" auto-play="true" interval="5000" @change="onchange" infinite="false">
         <div class="frame" v-for="(img,index) in imageList" @click="jumpTo(index)">
             <image class="image" resize="cover" :src="img.src"></image>
-            <text class="image-title">{{img.title}}</text>
+            <div class="text-box">
+                <text class="image-title">{{img.title}}</text>
+            </div>
+            
         </div>
         <indicator class="indicator"></indicator>
     </slider>
@@ -34,6 +37,14 @@
         bottom: 10px;
         right: 0px;
     }
+    .text-box{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.3);
+    }
     .image-title{
         position: absolute;
         width: 750px;
@@ -42,7 +53,8 @@
         text-align: center;
         top: 200px;
         left: 0;
-        color: #FF4081;
+        color: #ffffff;
+        font-weight: 600;
         font-size: 38px;
         font-weight: bold;
     }

@@ -1,15 +1,16 @@
 <template>
     <div class="wrapper"  @click="jump('/online/'+article.id+'/' + article.title)">
-        <div class="auther-box">
+        <!-- <div class="auther-box">
             <image class="auther-img" resize="cover" :src="article.auther.full_avatar"></image>
             <text class="auther-name">{{article.auther.name}}</text>
+        </div> -->
+        <div class="tlt-box">
+            <text class="tlt">{{article.title}}</text>
         </div>
         <div class="img-box">
             <image class="main-img" resize="cover" :src="article.full_thumb"></image>
         </div>
-        <div class="tlt-box">
-            <text class="tlt">{{article.title}}</text>
-        </div>
+        
         <text class="info">{{article.activity_start_time}}开始</text>
         <text class="info">{{article.address}}</text>
     </div>
@@ -70,7 +71,7 @@
         font-size: 28px;
         padding-left: 20px;
         padding-right: 20px;
-        margin-top:10px;
+        margin-top:20px;
         overflow: hidden;
         lines:1;
         text-overflow: ellipsis;

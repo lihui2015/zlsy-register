@@ -1,0 +1,4 @@
+#Wed Apr 18 17:14:34 CST 2018
+base.0=/Users/apple/www/weex/zlsy-1/platforms/android/app/build/intermediates/transforms/dexMerger/debug/63
+path.0=classes.dex
+renamed.0=classes.dex

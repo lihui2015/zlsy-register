@@ -3,15 +3,16 @@
         <header5></header5>
         <scroller ref="contentScroller" :class="['scroller',isIpx&&isIpx()?'ml-ipx':'',isand?'android-main-list':'']"  show-scrollbar="false">
         <div :class="['header', isIpx&&isIpx()?'h-ipx':'']">
-            <image class="i-photo" resize="cover" :src="profile.full_avatar"></image>
-            <text class="i-name">{{profile.nickname}}</text>
+            <!-- <image class="i-photo" resize="cover" :src="profile.full_avatar"></image> -->
+            <text class="i-name">{{profile.name}}</text>
             <!-- <div class="b-tlt">
                 <text class="i-tag tag-v8 iconfont">&#xe660;</text>
                 <text class="txt-tag"></text>
             </div> -->
-            <div class="aboutBox" @click="jump('/about')">
+            <div class="aboutBox" @click="jump('/about/'+currentVersion+'/'+newVersion)">
                 <text class="about-icon iconfont">&#xe62d;</text>
                 <text class="about-text">关于</text>
+                <text class="notice-dot" v-if="isNew"></text>
             </div>
             <!-- <text class="b-qrcode iconfont">&#xe62d;</text> -->
         </div>
@@ -87,7 +88,10 @@
                 actLimit:3,
                 postLimit: 10,
                 profile:{},
-                isand:false
+                isand:false,
+                currentVersion: '1.2.0',
+                newVersion:'',
+                isNew:false
             }
         },
         components: {
@@ -102,19 +106,20 @@
                 this.getBookList()
                 //this.getActivityList()
                 this.getPostList()
+                this.getVersion()
             })
         },
         methods: {
             getProfile(){
                 var _self = this;
-                this.GET('profile/reader/', this.token, res => {
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.GET('profile/reader/', this.token, data => {
+                    if(data.code == 200){
+                        let result = data.result;
                         _self.profile = result;
                         //console.log(_self.profile);
                     }else{
                         modal.toast({
-                            message: res.data.code + ":" + _self.token,
+                            message: data.code,
                             duration: 3
                         })
                     }
@@ -122,15 +127,15 @@
             },
             getBookList(){
                 var _self = this;
-                this.GET('profile/book/'+_self.bookLimit+'?page=1', this.token, res => {
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.GET('profile/book/'+_self.bookLimit+'?page=1', this.token, data => {
+                    if(data.code == 200){
+                        let result = data.result;
                         _self.books = result;
                         
                         //console.log(_self.books);
                     }else{
                         modal.toast({
-                            message: res.data.code + ":" + _self.token,
+                            message: data.code,
                             duration: 3
                         })
                     }
@@ -138,13 +143,13 @@
             },
             getActivityList(){
                 var _self = this;
-                this.GET('profile/activity/'+_self.actLimit+'?page=1', this.token, res => {
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.GET('profile/activity/'+_self.actLimit+'?page=1', this.token, data => {
+                    if(data.code == 200){
+                        let result = data.result;
                         _self.activity = result;
                     }else{
                         modal.toast({
-                            message: res.data.code + ":" + _self.token,
+                            message: data.code,
                             duration: 3
                         })
                     }
@@ -152,20 +157,45 @@
             },
             getPostList(){
                 var _self = this;
-                this.GET('profile/post/'+_self.postLimit+'?page=1', this.token, res => {
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.GET('profile/post/'+_self.postLimit+'?page=1', this.token, data => {
+                    if(data.code == 200){
+                        let result = data.result;
                         _self.posts = result;
                         for(var i=0; i<result.length; i++){
                             _self.posts[i].created_at = result[i].created_at.split(' ')[0];
                         }
                     }else{
                         modal.toast({
-                            message: res.data.code + ":" + _self.token,
+                            message: data.code,
                             duration: 3
                         })
                     }
                 })
+            },
+            getVersion(){
+                var _self = this;
+                this.GET('version', '', data => {
+                    if(data.code == 200){
+                        let result = data.result;
+                        this.newVersion = result.version;
+                        this.compareV();
+                    }else{
+                        modal.toast({
+                            message: data.code,
+                            duration: 3
+                        })
+                    }
+                })
+            },
+            compareV(){
+                var cu = this.currentVersion,
+                    ne = this.newVersion;
+                if(ne > cu){
+                    this.isNew = true;
+                }else{
+                    this.isNew = false;
+                }
+                //console.log(this.isNew)
             }
         }
     }
@@ -189,7 +219,7 @@
         /*margin-bottom: 290px;*/
     }
     .android-main-list{
-        margin-bottom: 150px;
+        /*margin-bottom: 150px;*/
     }
     .ml-ipx{
         margin-bottom: 140px;
@@ -218,18 +248,18 @@
     .bg3{
         top:1000px;
     }
-    .i-photo{
+    /*.i-photo{
         position: absolute;
         bottom:60px;
         left: 30px;
         height: 130px;
         width: 130px;
         border-radius: 130px;
-    }
+    }*/
     .i-name{
         position: absolute;
-        bottom:120px;
-        left: 190px;
+        bottom:70px;
+        left: 30px;
         height: 50px;
         width: 300px;
         font-size: 38px;
@@ -277,6 +307,14 @@
     .about-icon{
         font-size: 40px;
         color: #ffffff;
+    }
+    .notice-dot{
+        margin-top: -20px;
+        margin-left: 10px;
+        height: 15px;
+        width: 15px;
+        border-radius: 100%;
+        background-color: #f00;
     }
     .b-qrcode{
         position: absolute;

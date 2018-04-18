@@ -1,41 +1,44 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
-    <div class="wrapper-login">
+        <scroller class="main-list">
+            <refresher></refresher>
+            <div class="wrapper-login">
         <text class="text">注册账户</text>
-        <div class="input-box">
-        <input type="tel" autofocus="true" placeholder="学号(工号)" class="input-style" v-model="number" ref="number">
-        <input type="text" placeholder="姓名" class="input-style bt" v-model="name" ref="name">
-        <input type="tel" placeholder="手机号" class="input-style bt" v-model="phone" ref="tel">
-        <div class="validate bt">
-            <input type="text" placeholder="验证码" class="input-style validate-input" v-model="code">
-            <div class="validate-btn">
-                <text class="v-btn" @click="validate()" v-if="before">获取验证码</text>
-                <wxc-countdown
-                    :interval="1000"
-                    tpl="{s}秒"
-                    :timeBoxStyle="{backgroundColor: '#ffffff', height: '60px'}"
-                    :timeTextStyle="{fontSize: '28px', color: '#8d8d8d'}"
-                    :dotTextStyle="{color: '#8d8d8d', fontSize: '28px',justifyContent: 'center'}"
-                    :dotBoxStyle="{width: '48px',height: '60px'}"
-                    :style="{marginTop: '0px', justifyContent: 'center'}"
-                    :time="TIME"
-                    @wxcOnComplete="onCompleted" v-else>
-                </wxc-countdown>
+            <div class="input-box">
+            <input type="tel" autofocus="true" placeholder="学号(工号)" class="input-style" v-model="number" ref="number">
+            <input type="text" placeholder="姓名" class="input-style bt" v-model="name" ref="name">
+            <input type="tel" placeholder="手机号" class="input-style bt" v-model="phone" ref="tel">
+            <div class="validate bt">
+                <input type="text" placeholder="验证码" class="input-style validate-input" v-model="code">
+                <div class="validate-btn">
+                    <text class="v-btn" @click="validate()" v-if="before">获取验证码</text>
+                    <wxc-countdown
+                        :interval="1000"
+                        tpl="{s}秒"
+                        :timeBoxStyle="{backgroundColor: '#ffffff', height: '60px'}"
+                        :timeTextStyle="{fontSize: '28px', color: '#8d8d8d'}"
+                        :dotTextStyle="{color: '#8d8d8d', fontSize: '28px',justifyContent: 'center'}"
+                        :dotBoxStyle="{width: '48px',height: '60px'}"
+                        :style="{marginTop: '0px', justifyContent: 'center'}"
+                        :time="TIME"
+                        @wxcOnComplete="onCompleted" v-else>
+                    </wxc-countdown>
+                </div>
             </div>
-        </div>
-        <input type="password" placeholder="密码" class="input-style bt" v-model="password">
-        </div>
-        <text class="login-btn" @click="signIn()">注册</text>
-        <div class="box">
-            <text class="text">已有账号，</text>
-            <text class="btn" @click="jumpTo('/login')">返回登陆</text>
-        </div>
-        <div class="info-box">
-            <text class="info-text">注册说明：请输入您的学号（工号）及姓名以验证您为浙江理工大学图书馆的用户。同时，依据国家相关法律网络实名制的要求需要验证您的手机号。
-            </text>
-        </div>
+            <input type="password" placeholder="密码" class="input-style bt" v-model="password">
+            </div>
+            <text class="login-btn" @click="signIn()">注册</text>
+            <div class="box">
+                <text class="text">已有账号，</text>
+                <text class="btn" @click="jumpTo('/login')">返回登陆</text>
+            </div>
+            <div class="info-box">
+                <text class="info-text">注册说明：请输入您的学号（工号）及姓名以验证您为浙江理工大学图书馆的用户。同时，依据国家相关法律网络实名制的要求需要验证您的手机号。
+                </text>
+            </div>
     </div>
-    </div>
+        </scroller>
+    
     </div>
 </template>
 <style scoped>
@@ -47,11 +50,15 @@
         left:0;
         background-color:#f8f8f8;
     }
+    .main-list{
+        height: 1245px;
+    }
     .wrapper-login{
         margin-top: 50px;
         margin-left: 30px;
         width: 690px;
         align-items: center;
+        padding-bottom: 100px;
     }
     .text{
         font-size: 36px;
@@ -192,23 +199,16 @@
                     });
                     return false;
                 }
-                if(!ph.length){
-                    modal.toast({
-                        message: "请输入手机号码",
-                        duration: 1
-                    });
-                    return false;
-                }
-                if(!this.checkPhone()){
+                if(!ph.length || !this.checkPhone()){
                     modal.toast({
                         message: "请输入11位手机号码",
                         duration: 1
                     });
                     return false;
                 }
-                if(!cd.length){
+                if(!cd.length || !/^\d{6}\b/.test(cd)){
                     modal.toast({
-                        message: "请输入验证码",
+                        message: "请输入6位验证码",
                         duration: 1
                     })
                     return false;
@@ -220,36 +220,61 @@
                     })
                     return false;
                 }
-                stream.fetch({
-                    method: 'POST',
-                    type: 'json',
-                    headers:{
-                        "Content-Type":"application/json"
-                    },
-                    body:JSON.stringify({"phone":ph,"code":cd,"password":pw}),
-                    url: 'http://zl.senseitgroup.com/app/register'
-                }, function(res){
-                    if(res.data.code == 200){
+
+                var data = JSON.stringify({"phone":ph,"code":cd,"password":pw,"accid":nu,"name":na});
+                this.POST('register', '', data, data => {
+                  if(data.code == 200){
                         //注册成功
-                        let result = res.data.result;
+                        let result = data.result;
                         modal.toast({
-                            message: res.data.message+"，请登陆",
+                            message: data.message+"，请登陆",
                             duration: 1
                         })
                         _self.$router.push('/login');
-                    }else if(res.data.code == 3001){
+                    }else if(data.code == 3001){
                         //已经注册过
                         modal.toast({
-                            message: res.data.message,
-                            duration: 3
+                            message: data.message,
+                            duration: 1
                         })
                     }else{
                         modal.toast({
-                            message: res.data.message,
-                            duration: 3
+                            message: data.message,
+                            duration: 1
                         })
                     }
                 })
+
+                // stream.fetch({
+                //     method: 'POST',
+                //     type: 'json',
+                //     headers:{
+                //         "Content-Type":"application/json"
+                //     },
+                //     body:JSON.stringify({"phone":ph,"code":cd,"password":pw,"accid":nu,"name":na}),
+                //     url: 'http://zl.senseitgroup.com/app/register'
+                // }, function(res){
+                //     if(res.data.code == 200){
+                //         //注册成功
+                //         let result = res.data.result;
+                //         modal.toast({
+                //             message: res.data.message+"，请登陆",
+                //             duration: 1
+                //         })
+                //         _self.$router.push('/login');
+                //     }else if(res.data.code == 3001){
+                //         //已经注册过
+                //         modal.toast({
+                //             message: res.data.message,
+                //             duration: 3
+                //         })
+                //     }else{
+                //         modal.toast({
+                //             message: res.data.message,
+                //             duration: 3
+                //         })
+                //     }
+                // })
             },
             validate(){
                 var ph = this.phone;
@@ -262,27 +287,44 @@
                     return false;
                 }
                 
-                stream.fetch({
-                    method: 'POST',
-                    type: 'json',
-                    url: 'http://zl.senseitgroup.com/app/sendCode?phone='+ph
-                }, function(res){
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.POST('sendCode?phone='+ph, '', '', data => {
+                  if(data.code == 200){
+                        let result = data.result;
                         _self.before = false;
                         _self.TIME=new Date().getTime() + 60000
-                        modal.toast({
-                            message: res.data.message,
-                            duration: 3
-                        })
+                        // modal.toast({
+                        //     message: data.message,
+                        //     duration: 1
+                        // })
                     }else{
                         modal.toast({
-                            message: res.data.message,
-                            duration: 3
+                            message: data.message,
+                            duration: 1
                         })
                     }
-                    
                 })
+
+                // stream.fetch({
+                //     method: 'POST',
+                //     type: 'json',
+                //     url: 'http://zl.senseitgroup.com/app/sendCode?phone='+ph
+                // }, function(res){
+                //     if(res.data.code == 200){
+                //         let result = res.data.result;
+                //         _self.before = false;
+                //         _self.TIME=new Date().getTime() + 60000
+                //         modal.toast({
+                //             message: res.data.message,
+                //             duration: 3
+                //         })
+                //     }else{
+                //         modal.toast({
+                //             message: res.data.message,
+                //             duration: 3
+                //         })
+                //     }
+                    
+                // })
             },
             onCompleted(){
                 this.before=true;
@@ -295,9 +337,11 @@
             },
             checkPhone(){ 
                 var phone = this.phone;
-                if(!(/^1[34578]\d{9}$/.test(phone))){ 
-                    return false; 
-                } 
+                if(/^1[34578]\d{9}$/.test(phone)){ 
+                    return true; 
+                }else{
+                    return false;
+                }
             }
         }
     }

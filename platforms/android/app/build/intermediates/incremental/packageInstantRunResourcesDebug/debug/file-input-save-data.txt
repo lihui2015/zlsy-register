@@ -1,0 +1,15 @@
+#Internal package file, do not edit.
+#Wed Apr 18 17:29:16 CST 2018
+1.base=/Users/apple/www/weex/zlsy-1/platforms/android/app/build/intermediates/assets/debug
+2.path=index.js
+0.baseType=DIRECTORY
+2.base=/Users/apple/www/weex/zlsy-1/platforms/android/app/build/intermediates/assets/debug
+2.set=ASSET
+1.baseType=DIRECTORY
+count=3
+1.set=ASSET
+0.path=main.js
+0.set=ASSET
+0.base=/Users/apple/www/weex/zlsy-1/platforms/android/app/build/intermediates/assets/debug
+2.baseType=DIRECTORY
+1.path=dist/index.js

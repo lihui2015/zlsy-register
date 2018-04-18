@@ -16,6 +16,7 @@ import java.util.Map;
 
 import cn.edu.zstu.WXPageActivity;
 import cn.edu.zstu.util.CacheActivity;
+import cn.edu.zstu.util.APKVersionCodeUtils;
 
 import static com.taobao.weex.ui.ExternalLoaderComponentHolder.TAG;
 
@@ -60,6 +61,8 @@ public class CloseModule extends WXModule{
         LogUtil.e("获取是否存在虚拟按键" + hasNavigationBar);
 
     }
+
+
 
 
 }

@@ -22,6 +22,7 @@ import defaultPage from '@/assets/views/default'
 import bookshelf from '@/assets/views/bookshelf'
 import mypost from '@/assets/views/mypost'
 import about from '@/assets/views/about'
+import web from '@/assets/views/web'
 
 Vue.use(Router)
 
@@ -49,8 +50,7 @@ module.exports = new Router({
     {
       path: '/openDoor',
       name: 'openDoor',
-      component: openDoor,
-      meta: { requiresAuth: true }
+      component: openDoor
     },
     {
       path: '/list/:index/:name',
@@ -123,10 +123,14 @@ module.exports = new Router({
       meta: { requiresAuth: true }
     },
     {
-      path: '/about',
+      path: '/about/:current/:new',
       name: 'about',
-      component: about,
-      meta: { requiresAuth: true }
+      component: about
+    },
+    {
+      path: '/web',
+      name: 'web',
+      component: web
     },
     {
       path: '/login',

@@ -1,7 +1,7 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2 title="我的书架" :leftBtn="leftBtn"></header2>
-        <scroller class="main-list" :class="[isand?'android-main-list':'']">
+        <scroller class="main-list" :class="[isand?'android-main-list':'']" offset-accuracy="300px" @loadmore="onloading" loadmoreoffset="200">
             <refresher></refresher>
             <div class="book-list">
                 <div class="sub-i" v-for="i in booklist">
@@ -14,9 +14,9 @@
                     
                 </div>
             </div>
-            <loading :class="['loading',loadinging ? 'show' : 'hide']" @loading="onloading">
-              <!-- <loading-indicator class="indicator"></loading-indicator> -->
-            </loading> 
+            <!-- <loading :class="['loading',loadinging ? 'show' : 'hide']" @loading="onloading">
+              <loading-indicator class="indicator"></loading-indicator>
+            </loading>  -->
             <!--<loading class="loading" display="hide">-->
                 <!--<text class="indicator">Loading ...</text>-->
             <!--</loading>-->
@@ -44,7 +44,7 @@
         width: 750px;
     }
     .android-main-list{
-        margin-bottom: 150px;
+        /*margin-bottom: 150px;*/
     }
     .book-list{
         padding-left: 20px;
@@ -158,10 +158,10 @@
             getList(){
                 var _self = this;
                 var url = '';
-                this.GET('profile/book/'+this.bookList+'?page='+this.current_page, this.token, res => {
+                this.GET('profile/book/'+this.bookList+'?page='+this.current_page, this.token, data => {
                     this.loadinging = false;
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                    if(data.code == 200){
+                        let result = data.result;
                         for(let i = 0; i<result.length; i++){
                           this.booklist.push(result[i])
                         }
@@ -176,7 +176,7 @@
                         
                     }else{
                         modal.toast({
-                            message: res.data.code + ":" + _self.token,
+                            message: data.code,
                             duration: 3
                         })
                     }

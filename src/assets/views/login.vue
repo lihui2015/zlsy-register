@@ -129,24 +129,36 @@
                         duration: 1
                     })
                 }
-                stream.fetch({
-                    method: 'POST',
-                    type: 'json',
-                    url: 'http://zl.senseitgroup.com/app/login?phone='+ph+'&password='+pw
-                    //url: '/json/login?phone=17327486666&password=123456'
-                }, function(res){
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.POST('login?phone='+ph+'&password='+pw, '', '', data => {
+                  if(data.code == 200){
+                        let result = data.result;
                         storage.setItem('token',result.api_token);
                         _self.$router.push('/home');
                     }else{
                         modal.toast({
-                            message: res.data.message,
+                            message: data.message,
                             duration: 3
                         })
                     }
-                    
                 })
+                // stream.fetch({
+                //     method: 'POST',
+                //     type: 'json',
+                //     url: 'http://zl.senseitgroup.com/app/login?phone='+ph+'&password='+pw
+                //     //url: '/json/login?phone=17327486666&password=123456'
+                // }, function(res){
+                //     if(res.data.code == 200){
+                //         let result = res.data.result;
+                //         storage.setItem('token',result.api_token);
+                //         _self.$router.push('/home');
+                //     }else{
+                //         modal.toast({
+                //             message: res.data.message,
+                //             duration: 3
+                //         })
+                //     }
+                    
+                // })
             },
             jumpTo(_url){
                 this.$router.push(_url);

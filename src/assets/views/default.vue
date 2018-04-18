@@ -94,13 +94,13 @@
                 _self.token = event.data;
 
                 //banner ajax
-                this.GET('banners/list', _self.token, res => {
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.GET('banners/list', _self.token, data => {
+                    if(data.code == 200){
+                        let result = data.result;
                         this.YXBanners = result;
                     }else{
                         // modal.toast({
-                        //     message: res.data.code + ":" + _self.token,
+                        //     message: data.code + ":" + _self.token,
                         //     duration: 3
                         // })
                     }
@@ -108,19 +108,19 @@
 
                 //借阅记录
                 // this.testGET('api/home/borrowRecords.json', res => {
-                //     let result = res.data.result;
+                //     let result = data.result;
                 //     this.borrowRecords = result['borrowRecords'];
                 // });
 
                 //图书精选
-                this.GET('books/chosen/6', _self.token, res => {
-                    if(res.data.code == 200){
-                        let result = res.data.result;
+                this.GET('books/chosen/6', _self.token, data => {
+                    if(data.code == 200){
+                        let result = data.result;
                         this.bookList = result;
                         this.borrowRecords = result;
                     }else{
                         // modal.toast({
-                        //     message: res.data.code + ":" + _self.token,
+                        //     message: data.code + ":" + _self.token,
                         //     duration: 3
                         // })
                     }

@@ -52,16 +52,16 @@ export default {
                     return false;
                 }
                 var data = JSON.stringify({"title":_self.title,"content":_self.post});
-                _self.POST('posts/create/'+_self.postID, _self.token, data, res => {
-                  if (res.data.code == 200){
+                _self.POST('posts/create/'+_self.postID, _self.token, data, data => {
+                  if (data.code == 200){
                     modal.toast({
-                        message: res.data.message+",请等待审核",
+                        message: data.message+",请等待审核",
                         duration: 1
                     })
                     _self.$router.go(-1)
                   }else{
                     modal.toast({
-                        message: res.data.message,
+                        message: data.message,
                         duration: 3
                     })
                   }

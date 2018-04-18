@@ -52,16 +52,16 @@ export default {
                     return false;
                 }
                 var data = JSON.stringify({"score":_self.score,"content":_self.comment});
-                _self.POST('books/comment/'+_self.bookID, _self.token, data, res => {
-                  if (res.data.code == 200){
+                _self.POST('books/comment/'+_self.bookID, _self.token, data, data => {
+                  if (data.code == 200){
                     modal.toast({
-                        message: res.data.message+",请等待审核",
+                        message: data.message+",请等待审核",
                         duration: 1
                     })
                     _self.$router.go(-1)
                   }else{
                     modal.toast({
-                        message: res.data.message,
+                        message: data.message,
                         duration: 3
                     })
                   }
